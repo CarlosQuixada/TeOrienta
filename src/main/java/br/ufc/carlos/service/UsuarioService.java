@@ -18,5 +18,9 @@ public class UsuarioService {
 	public Usuario buscarUsuario(Integer id) {
 		return this.usuarioRepository.findOne(id);
 	}
+	
+	public void removeUsuario(Integer idUsuario){
+		usuarioRepository.delete(idUsuario);
+	}
 }
 

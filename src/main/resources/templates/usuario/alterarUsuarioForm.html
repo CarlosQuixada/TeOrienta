@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
+
+<head>
+<title>Editar Conta</title>
+</head>
+<body>
+	<h2>Editar Usuario</h2>
+	<br />
+	<form th:action="@{/alterarUsuario}" th:object="${usuario}" method="post">
+		<input type="hidden" th:field="*{idUsuario}" th:value="${usuario.idUsuario}" /> 
+		Nome: <input type="text" th:field="*{nome}" th:value="${usuario.nome}" /> 
+		Email:<input type="text" th:field="*{email}" th:value="${usuario.email}" /><br /> 
+		<input type="hidden" th:field="*{senha}" th:value="${usuario.senha}" /><br />
+		<input type="submit" value="ENVIAR" />
+	</form>
+</body>
+</html>

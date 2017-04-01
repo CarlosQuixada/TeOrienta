@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html
+	xmlns = "http://www.w3.org/1999/xhtml"
+	xmlns:th = "http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+>
+  <head>
+    <title>Te Orienta</title>
+  </head>
+
+  <body>
+    <h2>Minhas tarefas</h2>
+        <table border= "1">
+          <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Descricao</th>            
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr th:each="tarefa : ${tarefas}">
+              <td th:text="${tarefa.titulo}"></td>
+              <td th:text="${tarefa.descricao}"></td>
+            </tr>
+          </tbody>
+        </table>
+  </body>
+</html>

@@ -13,14 +13,8 @@
 	<h1>Te Orienta</h1> 
 	<h5>Sistema de Gerenciamento de Tarefas</h5><br/>
 		
-        <a th:href="@{/cadastrarUsuarioForm}">Cadastrar Usuário</a><br/>
-       
-       <form th:action="@{/login}" method="post"><br/>
-			Nome: <input type="text"  th:name="nome" /> <br/>
-			Senha:<input type="password" th:name="senha" /><br /> 
-	
-			<input type="submit" value="Logar" />
-		</form>
+        <a th:href="@{/alterarUsuarioForm}">Alterar Usuário</a><br/>
+        <a th:href="@{/deletarUsuarioForm}">Deletar Usuário</a>
 	
 </body>
 </html>

@@ -10,5 +10,5 @@ import br.ufc.carlos.model.Usuario;
 @Repository
 @Transactional
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
-
+	Usuario findUsuarioByNome(String nome);
 }

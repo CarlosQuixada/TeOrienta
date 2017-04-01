@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
+
+<head>
+<title>Te Orienta</title>
+</head>
+
+<body>
+
+	<h2>Cadastrar Tarefa</h2>
+	<form th:action="@{/cadastrarTarefa}" method="post">
+		Tiutlo:<input type="text" th:name="titulo"/><br /> 
+		
+		Descrição:<input type="text" th:name="descricao"/><br/> 
+		
+		<input type="submit" value="Cadastrar"/>
+
+	</form>
+</body>
+
+</html>

@@ -38,4 +38,17 @@ public class UsuarioController {
 		usuarioService.addOrUpdateUsuario(usuario);
 		return "index";
 	}
+	
+	@RequestMapping(value="/deletarUsuarioForm")
+	public String deletarUsuarioForm(Model model){
+		Usuario usuario = usuarioService.buscarUsuario(1);
+		model.addAttribute("usuario", usuario);
+		return "usuario/deletarUsuarioForm";
+	}
+	
+	@RequestMapping(value="/deletarUsuario")
+	public String deletarUsuario(Integer idUsuario){
+		usuarioService.removeUsuario(idUsuario);
+		return "index";
+	}
 }

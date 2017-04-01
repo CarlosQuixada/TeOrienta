@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
+
+<head>
+<title>Te Orienta</title>
+</head>
+<body>
+	<h2>Editar Usuario</h2>
+	<br />
+	<h4 th:text="'Deseja Excluir'+${usuario.nome}"></h4>
+	
+	<form th:action="@{/deletarUsuario}" th:object="${usuario}" method="post">
+		<input type="hidden" th:field="*{idUsuario}" th:value="${usuario.idUsuario}" />  
+		<input type="submit" value="OK" />
+	</form>
+</body>
+</html>

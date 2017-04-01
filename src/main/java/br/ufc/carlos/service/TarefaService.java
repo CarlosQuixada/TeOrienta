@@ -18,4 +18,8 @@ public class TarefaService {
 	public Tarefa buscarTarefa(Integer id) {
 		return this.tarefaRepository.findOne(id);
 	}
+	
+	public void removeTarefa(Integer idTarefa){
+		tarefaRepository.delete(idTarefa);
+	}
 }

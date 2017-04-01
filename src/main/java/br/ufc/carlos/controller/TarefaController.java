@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.carlos.model.Tarefa;
 import br.ufc.carlos.model.Usuario;
 import br.ufc.carlos.service.TarefaService;
+import br.ufc.carlos.service.UsuarioService;
 
 @Controller
 public class TarefaController {
 	@Autowired
 	TarefaService tarefaService;
+	@Autowired
+	UsuarioService usuarioService;
 
 	@RequestMapping(value = "/cadastrarTarefaForm")
 	public String cadastrarTarefaForm() {
@@ -36,7 +39,8 @@ public class TarefaController {
 	
 	@RequestMapping(value="/listarTarefa")
 	public String listarTarefa(HttpSession session,Model model){
-		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		Usuario usuLogado = (Usuario) session.getAttribute("usuario_logado");
+		Usuario usuario = usuarioService.buscarUsuario(usuLogado.getIdUsuario());
 		List<Tarefa> tarefas = usuario.getTarefas();
 		model.addAttribute("tarefas", tarefas);
 		return "tarefa/listarTarefa";
@@ -52,6 +56,13 @@ public class TarefaController {
 	@RequestMapping(value="/alterarTarefa")
 	public String alterarUsuario(@ModelAttribute Tarefa tarefa){
 		tarefaService.addOrUpdateUsuario(tarefa);
-		return "index";
+		return "home";
 	}
+	
+	@RequestMapping(value = "/excluirTarefa/{idTarefa}", method = RequestMethod.GET)
+	public String excluirAtividade(@PathVariable Integer idTarefa, Model model) {
+		tarefaService.removeTarefa(idTarefa);
+		return "home";
+	}
+
 }

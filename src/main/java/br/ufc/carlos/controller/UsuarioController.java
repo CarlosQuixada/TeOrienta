@@ -1,4 +1,6 @@
 package br.ufc.carlos.controller;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +29,9 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/alterarUsuarioForm")
-	public String alterarUsuarioForm(Model model){
-		Usuario usuario = usuarioService.buscarUsuario(1);
+	public String alterarUsuarioForm(HttpSession session, Model model){
+		Usuario usuLogado = (Usuario)session.getAttribute("usuario_logado");
+		Usuario usuario = usuarioService.buscarUsuario(usuLogado.getIdUsuario());
 		model.addAttribute("usuario", usuario);
 		return "usuario/alterarUsuarioForm";
 	}

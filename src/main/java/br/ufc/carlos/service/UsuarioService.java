@@ -11,8 +11,12 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	public void cadastrarUsuario(Usuario usuario) {
+	public void addOrUpdateUsuario(Usuario usuario) {
 		this.usuarioRepository.save(usuario);
+	}
+	
+	public Usuario buscarUsuario(Integer id) {
+		return this.usuarioRepository.findOne(id);
 	}
 }
 

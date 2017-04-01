@@ -6,21 +6,61 @@
 >
 
 <head>
+	<link href="/webjars/materializecss/0.97.7/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<title>Te Orienta</title>
 </head>
 
 <body>
-	<h1>Te Orienta</h1> 
-	<h5>Sistema de Gerenciamento de Tarefas</h5><br/>
-		
-        <a th:href="@{/cadastrarUsuarioForm}">Cadastrar Usuário</a><br/>
-       
-       <form th:action="@{/login}" method="post"><br/>
-			Nome: <input type="text"  th:name="nome" /> <br/>
-			Senha:<input type="password" th:name="senha" /><br /> 
+	<h1 class="header center blue-text">Te Orienta</h1> 
+	<h5 class="header center col s12 light">Sistema de Gerenciamento de Tarefas</h5><br/>
 	
-			<input type="submit" value="Logar" />
-		</form>
+	<div class="row center">
+		<a href="#modalLogin" data-target="modalLogin" class="btn-large waves-effect waves-light teal modal-trigger">Logar</a>
+        <a th:href="@{/cadastrarUsuarioForm}" class="btn-large waves-effect waves-light teal">Cadastrar Usuário</a>
+	</div>
+		
+    
+      <div id="modalLogin" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4>
+            <form class="col s12" th:action="@{/login}" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                       <input id="nome" type="text" class="validate" th:name="nome" />
+                <label for="nome">Nome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="senha" type="password" class="validate" th:name="senha" />
+                        <label for="senha">Senha</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+            <a class=" modal-action modal-close btn waves-effect waves-light red">Cancelar</a>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Logar
+            </button>
+        </div>
+            </form>
+
+        </div>
+        
+</div>   
+
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+
+
+        	  $('.modal-trigger').leanModal({
+        	      opacity: 0, // Opacity of modal background
+        	    }
+        	  );
+        	      
+        	      
+        });
+    </script>
 	
 </body>
 </html>

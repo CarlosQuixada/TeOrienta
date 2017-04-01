@@ -4,22 +4,41 @@
 	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
 
 <head>
+<link href="/webjars/materializecss/0.97.7/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <title>Te Orienta</title>
 </head>
 
 <body>
-
-	<h2>Cadastrar Usuário</h2>
+	
+	<h2 class="blue-text light center">Cadastrar Usuário</h2>
 	<form th:action="@{/cadastrarUsuario}" th:object="${usuario}" method="post">
-		Nome:<input type="text" th:field="*{nome}"/><br /> 
-		
-		Email:<input type="text" th:field="*{email}"/><br/> 
-		
-		Senha <input type="password" th:field="*{senha}"/><br/>
-
-		<input type="submit" value="Cadastrar"/>
-
+		<div class="row">
+		  <div class="row">
+                    <div class="input-field col s8">
+                       <input id="nome" type="text" th:field="*{nome}"/>
+                		<label for="nome">Nome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <input id="email" type="text" th:field="*{email}"/>
+                        <label for="email">Email</label>
+                    </div>
+                </div>     
+                 <div class="row">
+                   		<div class="input-field col s8">
+                        	<input id="senha" type="password" th:field="*{senha}"/>
+                        	<label for="senha">Senha</label>
+                    	</div>
+                </div>
+            	<div class="row col s8">
+            		<button class="btn waves-effect waves-light center" type="submit" name="action">Cadastrar
+            		</button>
+            	</div>
+          </div>
 	</form>
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
 </body>
 
 </html>

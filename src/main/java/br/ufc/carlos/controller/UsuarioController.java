@@ -43,8 +43,9 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/deletarUsuarioForm")
-	public String deletarUsuarioForm(Model model){
-		Usuario usuario = usuarioService.buscarUsuario(1);
+	public String deletarUsuarioForm(HttpSession session, Model model){
+		Usuario usuLogado = (Usuario)session.getAttribute("usuario_logado");
+		Usuario usuario = usuarioService.buscarUsuario(usuLogado.getIdUsuario());
 		model.addAttribute("usuario", usuario);
 		return "usuario/deletarUsuarioForm";
 	}

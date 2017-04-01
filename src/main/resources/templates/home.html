@@ -6,17 +6,23 @@
 >
 
 <head>
+	<link href="/webjars/materializecss/0.97.7/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<title>Te Orienta</title>
 </head>
 
 <body>
-	<h1>Te Orienta</h1> 
-	<h5>Sistema de Gerenciamento de Tarefas</h5><br/>
+	<h1 class="header center blue-text">Te Orienta</h1> 
+	<h5 class="header center col s12 light">Sistema de Gerenciamento de Tarefas</h5><br/>
+	
+	<div class="row center">
+		<a th:href="@{/alterarUsuarioForm}" class="btn-large waves-effect waves-light teal">Alterar Usuário</a>
+		<a th:href="@{/deletarUsuarioForm}" class="btn-large waves-effect waves-light teal">Deletar Usuário</a>
+		<a th:href="@{/cadastrarTarefaForm}" class="btn-large waves-effect waves-light teal">Cadastrar Tarefa</a>
+		<a th:href="@{/listarTarefa}" class="btn-large waves-effect waves-light teal">Visualizar Tarefas</a>
+	</div>
 		
-        <a th:href="@{/alterarUsuarioForm}">Alterar Usuário</a><br/>
-        <a th:href="@{/deletarUsuarioForm}">Deletar Usuário</a><br/>
-        <a th:href="@{/cadastrarTarefaForm}">Cadastrar Tarefa</a><br/>
-        <a th:href="@{/listarTarefa}">Visualizar Tarefas</a>
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
 	
 </body>
 </html>

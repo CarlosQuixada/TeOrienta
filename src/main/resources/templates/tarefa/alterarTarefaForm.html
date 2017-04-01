@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
+
+<head>
+<title>Te Orienta</title>
+</head>
+
+<body>
+<h2>Editar Dados</h2>
+	<br />
+	<form th:action="@{/alterarTarefa}" th:object= "${tarefa}" method="post">
+		<input type="hidden" th:field="*{idTarefa}" th:value="${tarefa.idTarefa}"/>
+		<input type="hidden" th:field="*{usuario}" th:value="${tarefa.usuario}"/>
+		Titulo:<input type="text" th:field="*{titulo}" th:value="${tarefa.titulo}"/><br/>
+		Descricao:<input type="text" th:field="*{descricao}" th:value="${tarefa.descricao}"/><br /> 
+		<input type="submit" value="Alterar" />
+	</form>
+</body>
+
+</html>

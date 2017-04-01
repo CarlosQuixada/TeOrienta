@@ -14,4 +14,8 @@ public class TarefaService {
 	public void addOrUpdateUsuario(Tarefa tarefa) {
 		this.tarefaRepository.save(tarefa);
 	}
+	
+	public Tarefa buscarTarefa(Integer id) {
+		return this.tarefaRepository.findOne(id);
+	}
 }

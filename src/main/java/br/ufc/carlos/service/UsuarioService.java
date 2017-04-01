@@ -22,5 +22,9 @@ public class UsuarioService {
 	public void removeUsuario(Integer idUsuario){
 		usuarioRepository.delete(idUsuario);
 	}
+	
+	public Usuario buscarUsuarioNome(String nome) {
+		return this.usuarioRepository.findUsuarioByNome(nome);
+	}
 }
 

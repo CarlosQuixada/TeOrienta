@@ -14,7 +14,8 @@
           <thead>
             <tr>
               <th>Titulo</th>
-              <th>Descricao</th>            
+              <th>Descricao</th>
+              <th>Action</th>            
             </tr>
           </thead>
           
@@ -22,6 +23,7 @@
             <tr th:each="tarefa : ${tarefas}">
               <td th:text="${tarefa.titulo}"></td>
               <td th:text="${tarefa.descricao}"></td>
+               <td><a th:href="@{'/alterarTarefaForm/' + ${tarefa.idTarefa}}">Alterar</a></td>
             </tr>
           </tbody>
         </table>

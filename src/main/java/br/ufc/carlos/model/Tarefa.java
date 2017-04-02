@@ -14,6 +14,7 @@ public class Tarefa {
 	private Integer idTarefa;
 	private String titulo;
 	private String descricao;
+	private StatusTarefa status;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", referencedColumnName = "USU_ID")
@@ -49,5 +50,13 @@ public class Tarefa {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public StatusTarefa getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusTarefa status) {
+		this.status = status;
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.ufc.carlos.model.StatusTarefa;
 import br.ufc.carlos.model.Tarefa;
 import br.ufc.carlos.model.Usuario;
 import br.ufc.carlos.service.TarefaService;
@@ -25,7 +26,7 @@ public class TarefaController {
 	UsuarioService usuarioService;
 
 	@RequestMapping(value = "/cadastrarTarefaForm")
-	public String cadastrarTarefaForm() {
+	public String cadastrarTarefaForm(Model model) {
 		return "tarefa/cadastrarTarefaForm";
 	}
 
@@ -33,6 +34,7 @@ public class TarefaController {
 	public String cadastrarTarefa(HttpSession session, Tarefa tarefa) {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 		tarefa.setUsuario(usuario);
+		tarefa.setStatus(StatusTarefa.TODO);
 		tarefaService.addOrUpdateUsuario(tarefa);
 		return "redirect:home";
 	}

@@ -4,19 +4,37 @@
 	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
 
 <head>
+<link href="/webjars/materializecss/0.97.7/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <title>Te Orienta</title>
 </head>
 
 <body>
-<h2>Editar Dados</h2>
-	<br />
-	<form th:action="@{/alterarTarefa}" th:object= "${tarefa}" method="post">
+<h2 class="blue-text light center">Editar Tarefa</h2>
+	
+	<form th:action="@{/alterarTarefa}" th:object="${tarefa}" method="post">
+		<div class="row">
 		<input type="hidden" th:field="*{idTarefa}" th:value="${tarefa.idTarefa}"/>
 		<input type="hidden" th:field="*{usuario}" th:value="${tarefa.usuario}"/>
-		Titulo:<input type="text" th:field="*{titulo}" th:value="${tarefa.titulo}"/><br/>
-		Descricao:<input type="text" th:field="*{descricao}" th:value="${tarefa.descricao}"/><br /> 
-		<input type="submit" value="Alterar" />
+		  <div class="row">
+                    <div class="input-field col s8">
+                       <input id="titulo" type="text" th:field="*{titulo}"/>
+                		<label for="titulo">Titulo</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <input id="descricao" type="text" th:field="*{descricao}"/>
+                        <label for="descricao">Descrição</label>
+                    </div>
+                </div>     
+            	<div class="row col s8">
+            		<button class="btn waves-effect waves-light center" type="submit" name="action">Alterar
+            		</button>
+            	</div>
+          </div>
 	</form>
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
 </body>
 
 </html>

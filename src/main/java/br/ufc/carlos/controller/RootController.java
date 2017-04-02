@@ -1,5 +1,7 @@
 package br.ufc.carlos.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.ufc.carlos.model.StatusTarefa;
+import br.ufc.carlos.model.Tarefa;
 import br.ufc.carlos.model.Usuario;
 import br.ufc.carlos.service.UsuarioService;
 
@@ -24,7 +28,13 @@ public class RootController {
 	@RequestMapping(value="/home")
 	public String home(HttpSession session,Model model){
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		List<Tarefa> tarefas = usuarioService.buscarUsuario(usuario.getIdUsuario()).getTarefas();
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("tarefas", tarefas);
+		model.addAttribute("TODO", StatusTarefa.TODO);
+		model.addAttribute("FAZENDO", StatusTarefa.FAZENDO);
+		model.addAttribute("CONCLUIDO", StatusTarefa.CONCLUIDO);
+		
 		return "home";
 	}
 	

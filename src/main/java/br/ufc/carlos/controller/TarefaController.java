@@ -56,13 +56,15 @@ public class TarefaController {
 	@RequestMapping(value="/alterarTarefa")
 	public String alterarUsuario(@ModelAttribute Tarefa tarefa){
 		tarefaService.addOrUpdateUsuario(tarefa);
-		return "home";
+		return "redirect:listarTarefa";
 	}
 	
 	@RequestMapping(value = "/excluirTarefa/{idTarefa}", method = RequestMethod.GET)
-	public String excluirAtividade(@PathVariable Integer idTarefa, Model model) {
+	public String excluirAtividade(@PathVariable Integer idTarefa,Model model,HttpSession session) {
 		tarefaService.removeTarefa(idTarefa);
-		return "redirect:home";
+		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		model.addAttribute("usuario", usuario);
+		return "home";
 	}
 
 }

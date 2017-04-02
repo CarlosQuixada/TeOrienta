@@ -21,21 +21,79 @@
 		<a th:href="@{/listarTarefa}" class="btn-large waves-effect waves-light teal">Visualizar Tarefas</a>
 	</div>
 	
-	     <div id="modalDeletar" class="modal">
+	  <div id="modalDeletar" class="modal">
         <div class="modal-content">
             <h4>Tem Certeza que Deseja Excluir</h4>
             <form class="col s12" th:action="@{/deletarUsuario}" th:object="${usuario}" method="post">
                <input type="hidden" th:field="*{idUsuario}" th:value="${usuario.idUsuario}" />  
                 <div class="modal-footer">
-            <a class=" modal-action modal-close btn waves-effect waves-light red">Cancelar</a>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Excluir
-            </button>
-        </div>
+            		<a class=" modal-action modal-close btn waves-effect waves-light red">Cancelar</a>
+            		<button class="btn waves-effect waves-light" type="submit" name="action">Excluir
+            		</button>
+        		</div>
             </form>
-
-        </div>
-        
-</div>   
+        </div>  
+	</div>
+	
+	<table class="centered">
+    	<thead>
+    		<th >TO-DO</th>
+    		<th>Fazendo</th>
+    		<th>Concluído</th>
+    	</thead>
+    	<tbody>
+    		<tr th:each="tarefa : ${tarefas}">
+    			<div>
+    			<td>
+        			<div th:if="${tarefa.status == TODO }" class="col s4 m4" >
+          					<div class="card blue-grey darken-1">
+            					<div class="card-content white-text">
+              						<span class="card-title" th:text="${tarefa.titulo}"></span>
+              							<p th:text="${tarefa.descricao}"></p>
+            					</div>
+            					<div class="card-action">
+              						<a th:href="@{'/alterarTarefaForm/' + ${tarefa.idTarefa}}">Alterar</a>
+              						<a th:href="@{'/excluirTarefa/' + ${tarefa.idTarefa}}">Delete</a>
+              						<a th:href="@{'/excluirTarefa/' + ${tarefa.idTarefa}}">Fazer</a>
+            					</div>
+          					</div>
+        				</div>
+       				</td>
+    			<td>
+        			<div  class="col s4 m4" th:if="${tarefa.status == FAZENDO }">
+          				<div class="card blue-grey darken-1">
+            					<div class="card-content white-text">
+              						<span class="card-title" th:text="${tarefa.titulo}"></span>
+              							<p th:text="${tarefa.descricao}"></p>
+            					</div>
+            					<div class="card-action">
+              						<a th:href="@{'/alterarTarefaForm/' + ${tarefa.idTarefa}}">Alterar</a>
+              						<a th:href="@{'/excluirTarefa/' + ${tarefa.idTarefa}}">Delete</a>
+              						<a th:href="@{'/excluirTarefa/' + ${tarefa.idTarefa}}">Concluir</a>
+            					</div>
+          					</div>
+        				</div>
+      				
+    			</td>
+    			<td>
+        			<div  class="col s4 m4" th:if="${tarefa.status == CONCLUIDO }">
+          				<div class="card blue-grey darken-1">
+            				<div class="card-content white-text">
+              					<span class="card-title" th:text="${tarefa.titulo}"></span>
+              						<p th:text="${tarefa.descricao}"></p>
+            					</div>
+            					<div class="card-action">
+              						<a th:href="@{'/alterarTarefaForm/' + ${tarefa.idTarefa}}">Alterar</a>
+              						<a th:href="@{'/excluirTarefa/' + ${tarefa.idTarefa}}">Delete</a>
+            					</div>
+          					</div>
+        				</div>
+      				
+    			</td>
+    		</tr>
+    	</tbody>
+    </table>
+<hr/>   
 		
 <script src="/webjars/jquery/2.2.4/jquery.js"></script>
 <script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>

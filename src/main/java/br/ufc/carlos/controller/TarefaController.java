@@ -39,13 +39,20 @@ public class TarefaController {
 		return "redirect:home";
 	}
 	
-	@RequestMapping(value="/listarTarefa")
-	public String listarTarefa(HttpSession session,Model model){
-		Usuario usuLogado = (Usuario) session.getAttribute("usuario_logado");
-		Usuario usuario = usuarioService.buscarUsuario(usuLogado.getIdUsuario());
-		List<Tarefa> tarefas = usuario.getTarefas();
+	@RequestMapping(value="/alterarStatus/{idTarefa}+{status}", method=RequestMethod.GET)
+	public String alterarStatus(@PathVariable("idTarefa") Integer idTarefa,@PathVariable("status") StatusTarefa status,Model model,HttpSession session){
+		Tarefa tarefa = tarefaService.buscarTarefa(idTarefa);
+		tarefa.setStatus(status);
+		tarefaService.addOrUpdateUsuario(tarefa);
+		
+		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		List<Tarefa> tarefas = usuarioService.buscarUsuario(usuario.getIdUsuario()).getTarefas();
+		model.addAttribute("usuario", usuario);
 		model.addAttribute("tarefas", tarefas);
-		return "tarefa/listarTarefa";
+		model.addAttribute("TODO", StatusTarefa.TODO);
+		model.addAttribute("FAZENDO", StatusTarefa.FAZENDO);
+		model.addAttribute("CONCLUIDO", StatusTarefa.CONCLUIDO);
+		return "home";
 	}
 	
 	@RequestMapping(value="/alterarTarefaForm/{idTarefa}", method=RequestMethod.GET)
@@ -64,8 +71,14 @@ public class TarefaController {
 	@RequestMapping(value = "/excluirTarefa/{idTarefa}", method = RequestMethod.GET)
 	public String excluirAtividade(@PathVariable Integer idTarefa,Model model,HttpSession session) {
 		tarefaService.removeTarefa(idTarefa);
+		
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		List<Tarefa> tarefas = usuarioService.buscarUsuario(usuario.getIdUsuario()).getTarefas();
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("tarefas", tarefas);
+		model.addAttribute("TODO", StatusTarefa.TODO);
+		model.addAttribute("FAZENDO", StatusTarefa.FAZENDO);
+		model.addAttribute("CONCLUIDO", StatusTarefa.CONCLUIDO);
 		return "home";
 	}
 

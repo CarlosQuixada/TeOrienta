@@ -16,13 +16,41 @@
 	
 	<div class="row center">
 		<a th:href="@{/alterarUsuarioForm}" class="btn-large waves-effect waves-light teal">Alterar Usuário</a>
-		<a th:href="@{/deletarUsuarioForm}" class="btn-large waves-effect waves-light teal">Deletar Usuário</a>
+		<a href="#modalDeletar" data-target="modalLogin" class="btn-large waves-effect waves-light teal modal-trigger">Deletar Usuário</a>
 		<a th:href="@{/cadastrarTarefaForm}" class="btn-large waves-effect waves-light teal">Cadastrar Tarefa</a>
 		<a th:href="@{/listarTarefa}" class="btn-large waves-effect waves-light teal">Visualizar Tarefas</a>
 	</div>
+	
+	     <div id="modalDeletar" class="modal">
+        <div class="modal-content">
+            <h4>Tem Certeza que Deseja Excluir</h4>
+            <form class="col s12" th:action="@{/deletarUsuario}" th:object="${usuario}" method="post">
+               <input type="hidden" th:field="*{idUsuario}" th:value="${usuario.idUsuario}" />  
+                <div class="modal-footer">
+            <a class=" modal-action modal-close btn waves-effect waves-light red">Cancelar</a>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Excluir
+            </button>
+        </div>
+            </form>
+
+        </div>
+        
+</div>   
 		
 <script src="/webjars/jquery/2.2.4/jquery.js"></script>
 <script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+
+
+        	  $('.modal-trigger').leanModal({
+        	      opacity: 0, // Opacity of modal background
+        	    }
+        	  );
+        	      
+        	      
+        });
+    </script>
 	
 </body>
 </html>

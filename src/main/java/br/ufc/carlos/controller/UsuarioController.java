@@ -39,15 +39,7 @@ public class UsuarioController {
 	@RequestMapping(value="/alterarUsuario")
 	public String alterarUsuario(@ModelAttribute Usuario usuario){
 		usuarioService.addOrUpdateUsuario(usuario);
-		return "index";
-	}
-	
-	@RequestMapping(value="/deletarUsuarioForm")
-	public String deletarUsuarioForm(HttpSession session, Model model){
-		Usuario usuLogado = (Usuario)session.getAttribute("usuario_logado");
-		Usuario usuario = usuarioService.buscarUsuario(usuLogado.getIdUsuario());
-		model.addAttribute("usuario", usuario);
-		return "usuario/deletarUsuarioForm";
+		return "redirect:home";
 	}
 	
 	@RequestMapping(value="/deletarUsuario")

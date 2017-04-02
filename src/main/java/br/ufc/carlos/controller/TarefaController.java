@@ -34,7 +34,7 @@ public class TarefaController {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 		tarefa.setUsuario(usuario);
 		tarefaService.addOrUpdateUsuario(tarefa);
-		return "home";
+		return "redirect:home";
 	}
 	
 	@RequestMapping(value="/listarTarefa")
@@ -62,7 +62,7 @@ public class TarefaController {
 	@RequestMapping(value = "/excluirTarefa/{idTarefa}", method = RequestMethod.GET)
 	public String excluirAtividade(@PathVariable Integer idTarefa, Model model) {
 		tarefaService.removeTarefa(idTarefa);
-		return "home";
+		return "redirect:home";
 	}
 
 }

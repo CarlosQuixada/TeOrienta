@@ -4,20 +4,36 @@
 	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
 
 <head>
+<link href="/webjars/materializecss/0.97.7/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <title>Te Orienta</title>
 </head>
 
 <body>
 
-	<h2>Cadastrar Tarefa</h2>
-	<form th:action="@{/cadastrarTarefa}" method="post">
-		Tiutlo:<input type="text" th:name="titulo"/><br /> 
-		
-		Descrição:<input type="text" th:name="descricao"/><br/> 
-		
-		<input type="submit" value="Cadastrar"/>
+	<h2 class="blue-text light center">Cadastrar Tarefa</h2>
 
+	<form th:action="@{/cadastrarTarefa}" method="post">
+		<div class="row">
+		  <div class="row">
+                    <div class="input-field col s8">
+                       <input id="titulo" type="text" th:name="titulo"/>
+                		<label for="titulo">Titulo</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <input id="descricao" type="text" th:name="descricao"/>
+                        <label for="descricao">Descrição</label>
+                    </div>
+                </div>     
+            	<div class="row col s8">
+            		<button class="btn waves-effect waves-light center" type="submit" name="action">Cadastrar
+            		</button>
+            	</div>
+          </div>
 	</form>
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
 </body>
 
 </html>
